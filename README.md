@@ -1,2 +1,1 @@
-# js-sandbox
-Sandbox for es5,es6 
+# Sandbox for es5,es6 
