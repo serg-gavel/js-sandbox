@@ -8,5 +8,4 @@ When a `KeyboardEvent` fires, you can test which key was pressed because that ev
     console.log(event.which);
     }
 ```
-#### `KeyCode picker Tool` 
-<https://codepen.io/serg-gavel/pen/OmVKxO>
+#### `KeyCode picker Tool` <https://codepen.io/serg-gavel/pen/OmVKxO>
