@@ -11,7 +11,7 @@ var Task = function () {
         _classCallCheck(this, Task);
 
         this.title = title;
-        this.done = false;
+        this._done = false;
         Task.count += 1;
         console.log('Создание задачи');
     }
@@ -21,6 +21,18 @@ var Task = function () {
         value: function complete() {
             this.done = true;
             console.log('\u0417\u0430\u0434\u0430\u0447\u0430 "' + this.title + '" \u0432\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u0430');
+        }
+    }, {
+        key: 'done',
+        get: function get() {
+            return this._done === true ? 'Выполнена' : 'Не выполнена';
+        },
+        set: function set(value) {
+            if (value !== undefined && typeof value === 'boolean') {
+                this._done = value;
+            } else {
+                console.error('Ошибка! Укажите значение true или false');
+            }
         }
     }], [{
         key: 'getDefaultTitle',
@@ -35,11 +47,6 @@ var Task = function () {
 Task.count = 0;
 
 var task = new Task('Пройти собеседование в Google');
-var task2 = new Task('Показать свой продукт на TechCrunch');
-var task3 = new Task();
-
-console.log(task.title);
-console.log(task2.title);
-console.log(task3.title);
-console.log(Task.count);
-task2.complete();
+console.log(task.done, task._done);
+task.complete();
+console.log(task.done, task._done);
