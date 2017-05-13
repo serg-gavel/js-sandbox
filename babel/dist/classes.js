@@ -6,7 +6,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var Task = function () {
     function Task() {
-        var title = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+        var title = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Task.getDefaultTitle();
 
         _classCallCheck(this, Task);
 
@@ -22,6 +22,11 @@ var Task = function () {
             this.done = true;
             console.log('\u0417\u0430\u0434\u0430\u0447\u0430 "' + this.title + '" \u0432\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u0430');
         }
+    }], [{
+        key: 'getDefaultTitle',
+        value: function getDefaultTitle() {
+            return 'Задача';
+        }
     }]);
 
     return Task;
@@ -29,10 +34,12 @@ var Task = function () {
 
 Task.count = 0;
 
-var task = new Task('Жигульнуть пивца');
-var task2 = new Task('Пивнуть жигульца');
+var task = new Task('Пройти собеседование в Google');
+var task2 = new Task('Показать свой продукт на TechCrunch');
+var task3 = new Task();
 
 console.log(task.title);
 console.log(task2.title);
+console.log(task3.title);
 console.log(Task.count);
 task2.complete();
