@@ -7,31 +7,34 @@ function addMovieToList(movie) {
     img.src = movie.Poster;
     movieList.appendChild(img);
 }
+// Переписываем функцию таким образом чтобы она возвращала обещания
+function getData(url) {
+    return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var json = JSON.parse(xhr.response);
+                resolve(json.Search);
+            } else {
+                reject(xhr.statusText);
+            }
+        };
 
-function getData(url, done) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url);
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            var json = JSON.parse(xhr.response);
-            console.log(json);
-            done(json.Search);
-        } else {
-            console.error(xhr.statusText);
-        }
-    };
+        xhr.onerror = function (error) {
+            reject(error);
+        };
 
-    xhr.onerror = function (error) {
-        console.error(error);
-    };
-
-    xhr.send();
+        xhr.send();
+    });
 }
 
 var search = 'Harry Potter';
 
-getData('http://www.omdbapi.com?s=' + search, function (movies) {
-    movies.forEach(function (movie) {
-        addMovieToList(movie);
+getData('http://www.omdbapi.com?s=' + search).then(function (movies) {
+    return movies.forEach(function (movie) {
+        return addMovieToList(movie);
     });
+}).catch(function (error) {
+    return console.error(error);
 });
