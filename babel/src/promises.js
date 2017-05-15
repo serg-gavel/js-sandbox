@@ -35,3 +35,27 @@ getData(`http://www.omdbapi.com?s=${search}`)
         movies.forEach(movie =>
             addMovieToList(movie)))
     .catch(error => console.error(error));
+
+function go(num) {
+    return new Promise(function (resolve, reject) {
+       let delay = Math.ceil(Math.random() * 3000);
+       console.log(num, delay);
+       setTimeout(() => {
+           if(delay > 2000)
+               reject(num);
+           else
+               resolve(num);
+       },delay);
+    });
+
+}
+
+// три обещания
+
+let p1 = go(1);
+let p2 = go(2);
+let p3 = go(3);
+
+Promise.all([p1,p2,p3])
+    .then(value => console.log(value))
+    .catch(error => console.error(error));
