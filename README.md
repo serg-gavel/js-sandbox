@@ -1,4 +1,4 @@
-# Sandbox for ES5,ES6 
+# Sandbox for ES5,ES6,ES7
 
 ### `Events`
 When a `KeyboardEvent` fires, you can test which key was pressed because that event contains information you can write logic against.
